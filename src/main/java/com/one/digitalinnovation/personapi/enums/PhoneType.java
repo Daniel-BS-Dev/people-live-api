@@ -1,5 +1,14 @@
 package com.one.digitalinnovation.personapi.enums;
 
-public class PhoneType {
+import lombok.*;
 
+@Getter
+@AllArgsConstructor
+public enum PhoneType {
+
+    HOME("Home"),
+    MOBILE("Mobile"),
+    COMMERCIAL("Commercial");
+
+    private final String description;
 }
