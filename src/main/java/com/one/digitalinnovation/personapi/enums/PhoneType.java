@@ -1,6 +1,7 @@
 package com.one.digitalinnovation.personapi.enums;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 @Getter
 @AllArgsConstructor

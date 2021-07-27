@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.one.digitalinnovation.personapi.dto.MessageResponseDTO;
+import com.one.digitalinnovation.personapi.dto.mapper.PersonMapper;
+import com.one.digitalinnovation.personapi.dto.request.PersonDTO;
 import com.one.digitalinnovation.personapi.entities.Person;
 import com.one.digitalinnovation.personapi.repositories.PersonRepository;
 
@@ -11,14 +13,18 @@ import com.one.digitalinnovation.personapi.repositories.PersonRepository;
 public class PersonService {
 	
     private PersonRepository repository;
+    
+    private final PersonMapper personMapper = PersonMapper.INSTANCE;
 	
 	@Autowired
 	public PersonService(PersonRepository personRepository) {
 		this.repository = personRepository;
 	}
 	
-	public MessageResponseDTO createPerson(Person person) {
-		Person savePerson = repository.save(person);
+	public MessageResponseDTO createPerson(PersonDTO personDTO) {
+		Person personToSave = personMapper.toModel(personDTO);
+		
+		Person savePerson = repository.save(personToSave);
 		return MessageResponseDTO
 				.builder()
 				.message("Created person With ID "+ savePerson.getId())
