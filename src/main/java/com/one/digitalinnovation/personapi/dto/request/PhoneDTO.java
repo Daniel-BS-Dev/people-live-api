@@ -2,7 +2,7 @@ package com.one.digitalinnovation.personapi.dto.request;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import com.one.digitalinnovation.personapi.enums.PhoneType;
@@ -14,19 +14,16 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class PhoneDTO {
-	
 
-	private Long id;
-	
-	@Enumerated(EnumType.STRING)
-	private PhoneType type;
-	
-	@NotBlank
-	@Size(min = 11, max = 14)
-	private String number;
+    private Long id;
 
+    @Enumerated(EnumType.STRING)
+    private PhoneType type;
+
+    @NotEmpty
+    @Size(min = 13, max = 14)
+    private String number;
 }
-

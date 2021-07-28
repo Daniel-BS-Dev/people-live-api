@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.one.digitalinnovation.personapi.dto.MessageResponseDTO;
 import com.one.digitalinnovation.personapi.dto.request.PersonDTO;
+import com.one.digitalinnovation.personapi.exceptions.PersonNotFoundException;
 import com.one.digitalinnovation.personapi.services.PersonService;
 
 @RestController
@@ -39,6 +41,11 @@ public class PersonController {
 	 @GetMapping
 	 public List<PersonDTO> listAll() {
 	     return service.listAll();
+	 }
+	 
+	 @GetMapping("/{id}")
+	 public PersonDTO finById(@PathVariable Long id) throws PersonNotFoundException {
+		 return service.findById(id);
 	 }
 
 }
